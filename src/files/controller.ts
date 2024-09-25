@@ -39,8 +39,11 @@ export default class MinioController {
         'controller - uploadFile body',
         req.body
       );
-      const { bucketName, recipeId, metadata } = req.params;
-      const metadataObj = JSON.parse(metadata);
+      const { bucketName, recipeId, metadata } = req.body;
+      let metadataObj = undefined;
+      if (req.body.metadata) {
+        metadataObj = JSON.parse(metadata);
+      }
       console.log('controller - uploadFile - metadata', metadataObj, metadata);
       const file: Express.Multer.File | undefined = req.file;
       if (!file) {
