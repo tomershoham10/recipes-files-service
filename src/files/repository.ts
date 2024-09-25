@@ -62,7 +62,7 @@ export default class MinioRepository {
       const fileStream = new PassThrough();
       fileStream.end(file.buffer);
       const fileName = `${recipeId}/${file.originalname}`;
-
+      console.log('repo - uploadFile', bucketName, fileName)
       const res = await MinioRepository.putObjectPromise(
         bucketName,
         fileName,
